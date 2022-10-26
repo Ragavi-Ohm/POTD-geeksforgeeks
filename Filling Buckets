@@ -1,0 +1,49 @@
+//TIME COMPLEXITY: O(n)--->dynamic programming
+ int fillingBucket(int N) {
+        
+        if(N==1)
+        return 1;
+        if(N==2)
+        return 2;
+        int dp[N];
+        dp[0]=1;
+        dp[1]=2;
+        for(int i=2;i<N;i++)
+        {
+            dp[i]=(dp[i-1]+dp[i-2])%100000000;
+        }
+        return dp[N-1];
+        
+    }
+
+//TIME COMPLEXITY: O(n^2)
+class solution{
+int permu(string s)
+    {
+    sort(s.begin(),s.end());
+    int c=0;
+	
+	do {
+    c=c+1;
+    }while (next_permutation(s.begin(), s.end()));
+    return c;
+    }
+    int fillingBucket(int N) {
+        // code here
+        int count=0;
+        int x=0,y=1;
+        while(y>=0)
+       {
+          y=N-2*x;
+          if(y<0)
+          break;
+          string s=string(x,'T')+string(y,'O');
+          count=count+permu(s);
+        //cout<<"Count now is:"<<count<<endl;
+        
+           x++;
+        }
+        return count%100000000;
+        
+    }
+}
