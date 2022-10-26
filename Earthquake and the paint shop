@@ -1,0 +1,27 @@
+Date: 24/10/22
+
+struct alphanumeric {
+    string name;
+    int count;
+};
+
+vector<alphanumeric> sortedStrings(int N, vector<string> A) {
+        // code here
+        
+        map<string,int>m;
+        vector<alphanumeric>v;
+        for(int i=0;i<N;i++)
+        {
+            //int c=count(A.begin(),A.end(),A[i]);
+            m[A[i]]=m[A[i]]+1;
+        }
+        
+        for(auto i:m)
+        {
+           struct alphanumeric obj;
+           obj.name=i.first;
+           obj.count=i.second;
+           v.push_back(obj);
+        }
+        return v;
+    }
