@@ -1,0 +1,47 @@
+//youtube reference link: https://www.youtube.com/watch?v=oN5HlKZUuMM
+
+class Solution
+{
+    public:
+        int largestArea(int n,int m,int k,vector<vector<int>> &enemy)
+        {
+            //  code here
+            /*int res=n*m-(k*(m+n-1));
+            if(res>0)
+            return res;
+            else
+            return 0;*/
+            vector<int>rows;
+            vector<int>cols;
+            int flag=0,flag1=0;
+            rows.push_back(0);
+            cols.push_back(0);
+            for(int i=0;i<k;i++)
+            {
+                
+                rows.push_back(enemy[i][0]);
+                cols.push_back(enemy[i][1]);
+            }
+            
+            rows.push_back(n+1);
+            cols.push_back(m+1);
+         
+            
+            sort(rows.begin(),rows.end());
+            sort(cols.begin(),cols.end());
+            int r=-1,c=-1;
+            for(int i=1;i<rows.size();i++)
+            {
+                int diff=rows[i]-rows[i-1]-1;
+                if(diff>r)
+                r=diff;
+            }
+            for(int i=1;i<cols.size();i++)
+            {
+                int dif=cols[i]-cols[i-1]-1;
+                if(dif>c)
+                c=dif;
+            }
+            return r*c;
+        }
+};
