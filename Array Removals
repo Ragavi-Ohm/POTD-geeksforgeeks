@@ -1,0 +1,30 @@
+int removals(vector<int>& arr, int k){
+        //Code here
+        int min=INT_MAX;
+        int n=arr.size();                
+        int c=0;
+        sort(arr.begin(),arr.end());
+        for(int i=0;i<n-1;i++)
+        {
+            for(int j=n-1;j>=i;j--)
+            {
+                
+                int res=arr[j]-arr[i];
+                if(res<=k)
+                {
+                    c++;
+                    if((n-1-j)+i<min)
+                    {
+                      min=n-1-j+i;
+                    }
+                    //cout<<"min is now"<<min;
+                    break;
+                }
+                
+            }
+        }
+        if(c==0)
+        min=0;
+        return min;
+        
+    }
