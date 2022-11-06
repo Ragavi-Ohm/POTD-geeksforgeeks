@@ -1,0 +1,24 @@
+
+class Solution{
+public:
+    vector<int> minPartition(int N)
+    {
+        // code here
+        vector<int>v;
+        vector<int>v1{1,2,5,10,20,50,100,200,500,2000};
+        int i=9;
+        while(N>0)
+        {
+            if(N>=v1[i])
+            {
+                v.push_back(v1[i]);
+                N=N-v1[i];
+            }
+            else
+            {
+                i--;
+            }
+        }
+        return v;
+    }
+};
