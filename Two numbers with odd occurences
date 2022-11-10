@@ -1,0 +1,83 @@
+//12 cases failed
+vector<long long int> twoOddNum(long long int Arr[], long long int N)  
+    {
+        // code here
+        vector<long long int>v;
+        map<int,int>m;
+        
+        for(int i=N-1;i>=0;i--)
+        {
+            m[Arr[i]]=m[Arr[i]]+1;
+        }
+        for(auto it:m)
+        {
+            
+            if(it.second%2!=0)
+            {
+                v.push_back(it.first);
+            }
+        }
+        //sort(v.begin(),v.end(),greater<long long int>());
+        //v.erase(unique(v.begin(),v.end()),v.end());
+        reverse(v.begin(),v.end());
+        
+        
+        
+        return v;
+    }
+    
+    
+    
+    correct sol:
+    
+    
+    class Solution
+{
+    public int[] twoOddNum(int Arr[], int N)
+    {
+        // code here
+        Arrays.sort(Arr);
+
+        int [] ans = new int[2];
+
+//temp=1: odd occurrence
+
+//temp=0: even occurrence
+
+        int flag=0;   
+
+        int j=0;
+
+        for(int i=N-1; i>0; i--){
+
+            if(Arr[i]!=Arr[i-1]){
+
+                if(flag%2==0)
+
+                    ans[j++] = Arr[i];
+
+                else    
+
+                    flag=0;
+
+            }
+
+            else{
+
+                flag++;     //changing temp value between 1 and 0
+
+            }
+
+        }
+        
+
+        if(j<=1){
+
+            ans[j] = Arr[0];
+
+        }
+        //System.out.println("flag is:"+flag);
+        return ans;
+    }
+    
+}
