@@ -1,0 +1,42 @@
+youtube reference:  https://www.youtube.com/watch?v=wSOfYesTBRk
+
+bool possible(vector<int> &stalls,int mid,int cows)
+    {
+        int pos=stalls[0];
+        int c=1;//assuming the first cow to be placed already in position 1 by greedy approach
+        for(int i=1;i<stalls.size();i++)
+        {
+            if((stalls[i]-pos)>=mid)
+            {
+                c++;
+                pos=stalls[i];
+            }
+            if(c==cows)
+            {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    int solve(int n, int k, vector<int> &stalls) {
+    
+        // Write your code here
+        sort(stalls.begin(),stalls.end());
+        int low=1,high=stalls[n-1]-stalls[0];
+        int res=1;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            if(possible(stalls,mid,k))
+            {
+                res=mid;
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+        }
+        return res;
+    }
