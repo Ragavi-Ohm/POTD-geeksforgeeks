@@ -1,0 +1,41 @@
+string buildLowestNumber(string num, int k)
+{
+    //code here.
+   stack<char>s;
+   string res;
+   for(int i=0;i<num.length();i++)
+   {
+       while(!s.empty() && k>0 && s.top()>num[i])
+       {
+           s.pop();
+           k--;
+       }
+       s.push(num[i]);
+   }
+   while(!s.empty() && k-->0)
+   {
+       s.pop();
+   }
+   while(!s.empty())
+   {
+       res.push_back(s.top());
+       s.pop();
+   }
+   while(res.back()=='0')
+   {
+       res.pop_back();
+   }
+   reverse(res.begin(),res.end());
+   if(res.empty())
+   return "0";
+   else
+   return res;
+} 
+
+
+Algorithm:
+
+why stack? using stack to find if any greater element present on the left side of the current element or not
+if yes, then keep pop those element untill condition is not false that is if greater element is present on left side of current element 
+else, push the current element 
+Now only thing we need is that we need to keep the pop() operation limited to at most K, whenever we perform pop() operation on stack we reduce the K value 
