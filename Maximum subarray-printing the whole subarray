@@ -1,0 +1,54 @@
+Q1: https://practice.geeksforgeeks.org/problems/maximum-sub-array5443/1
+
+vector<int> findSubarray(int a[], int n) {
+	    // code here
+	    int max=INT_MIN;
+	    vector<int>v;
+	    vector<vector<int>>v1;
+	    int sum=0;
+	    int curr=0;
+	    for(int i=0;i<n;i++)
+	    {
+	        if(sum<=sum+a[i])
+	        {
+	            sum=sum+a[i];
+	            v.push_back(a[i]);
+	           
+	        }
+	        else
+	        {
+	            sum=0;
+	           
+	            v1.push_back(v);
+	            v.clear();
+	          
+	        }
+	        if(max<=sum)
+	        {
+	            
+	             max=sum;
+	        }
+	    }
+	    
+	    v1.push_back(v);
+	   
+	    int i,ind;
+	    int ms=INT_MIN;
+	   
+	    for(i=0;i<v1.size();i++)
+	    {
+	        int res=accumulate(v1[i].begin(),v1[i].end(),0);
+	        
+	        if(res==max)
+	        {
+	            int size=v1[i].size();
+	            if(ms<size)
+	            {
+	                ms=size;
+	                ind=i;
+	            }
+	        }
+	    }
+	    return v1[ind];
+	    
+	}
