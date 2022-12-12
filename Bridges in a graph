@@ -1,0 +1,47 @@
+bool dfs(int node,int parent,vector<int>&vis,vector<int>&ti,vector<int>&low,int &timer,vector<int>adj[],int c,int d)
+    {
+        vis[node]=true;
+        ti[node]=low[node]=timer++;
+        for(auto it:adj[node])
+        {
+            if(it==parent)
+            continue;
+            else if(!vis[it])
+            {
+                
+                    if(dfs(it,node,vis,ti,low,timer,adj,c,d))
+                    {
+                        return true;
+                    }
+                    low[node]=min(low[node],low[it]);
+                    if(low[it]>ti[node]){
+                    if((node==c && it==d) ||(node==d && it==c))
+                    return true;
+                    }
+            }
+            else
+            low[node]=min(low[node],ti[it]);
+                
+            
+        }
+        return false;
+        
+    }
+    int isBridge(int V, vector<int> adj[], int c, int d) 
+    {
+        // Code here
+        vector<int>tin(V,-1);
+        vector<int>low(V,-1);
+        vector<int>vis(V,0);
+        int res;
+        int timer=0;
+        for(int i=0;i<V;i++)
+        {
+            if(vis[i]==false)
+            {
+                if(dfs(i,-1,vis,tin,low,timer,adj,c,d))
+                return 1;
+            }
+        }
+        return 0;
+    }
