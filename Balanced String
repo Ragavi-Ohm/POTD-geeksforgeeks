@@ -1,0 +1,80 @@
+string BalancedString(int N) {
+       
+        string res;
+        string alp="abcdefghijklmnopqrstuvwxyz";
+        if(N%2==0)
+        {
+           
+            if(N>26)
+            {
+                int mul=N/26;
+                for(int i=0;i<mul;i++){
+                res=res+"abcdefghijklmnopqrstuvwxyz";
+                }
+                N=N%26;
+            }
+            while(N>0)
+            {
+                for(int i=0;i<N/2;i++)
+                {
+                    res.push_back(alp[i]);
+                }
+                for(int i=(26-(N/2));i<26;i++)
+                {
+                    res.push_back(alp[i]);
+                }
+                N=N-res.length();
+            }
+            
+        }
+        else
+        {
+            int temp=N;
+            if(N>26)
+            {
+                int mul=N/26;
+                for(int i=0;i<mul;i++){
+                res=res+"abcdefghijklmnopqrstuvwxyz";
+                }
+                N=N%26;
+            }
+            while(N>0){
+            int sum=0;
+            while(temp>0)
+            {
+                int mod=temp%10;
+                sum=sum+mod;
+                temp=temp/10;
+            }
+           
+            if(sum%2==0)
+            {
+                
+                for(int i=0;i<(N+1)/2;i++)
+                {
+                    res.push_back(alp[i]);
+                }
+             
+                for(int i=26-((N-1)/2);i<26;i++)
+                {
+                    res.push_back(alp[i]);
+                }
+            }
+            else
+            {
+                for(int i=0;i<(N-1)/2;i++)
+                {
+                    res.push_back(alp[i]);
+                }
+               
+                for(int i=(26-((N+1)/2));i<26;i++)
+                {
+                    res.push_back(alp[i]);
+                }
+            }
+            N=N-res.length();
+            }
+            
+        }
+        return res;
+    }
