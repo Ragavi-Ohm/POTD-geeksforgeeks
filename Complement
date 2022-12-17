@@ -1,0 +1,44 @@
+Reference:  https://www.youtube.com/watch?v=h0N9LfwFkIU
+
+ vector<int> findRange(string str, int n) {
+        // code here
+        
+        vector<int>v(2);
+        int l=0,r=0;
+        int num=0,curr=0;
+        int max=INT_MIN;
+        for(int i=0;i<str.length();i++)
+        {
+            if(str[i]=='0')
+            num=1;
+            else
+            num=-1;
+            
+            if(num>num+curr)
+            {
+                l=i;
+                r=i;
+                curr=num;
+            }
+            else
+            {
+                r=i;
+                curr=curr+num;
+            }
+            if(max<curr)
+            {
+                max=curr;
+                v[0]=l+1;
+                v[1]=r+1;
+            }
+            
+        }
+        if(max<0)
+        {
+            v.clear();
+            v.push_back(-1);
+            
+        }
+        
+        return v;
+    }
