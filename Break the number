@@ -1,0 +1,7 @@
+ int waysToBreakNumber(int N){
+        // code here 
+        long mod=1000000000+7;
+        int ans=((long)(N+1)*(long)(N+2)/2)%mod;
+        
+        return ans;
+    }
