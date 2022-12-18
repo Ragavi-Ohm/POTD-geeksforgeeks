@@ -1,0 +1,21 @@
+long long maxGcd(int N) {
+        // code here
+        long long lcm=N;
+        int c=1;
+        for(long long i=N-1;i>=2;i--)
+        {
+           
+            if(__gcd(i,lcm)==1)
+            {
+                lcm=lcm*i;
+                c++;
+            }
+            if(c>=4)
+            break;
+            
+        }
+       
+        
+        return lcm;
+        
+    }
