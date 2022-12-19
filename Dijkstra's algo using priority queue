@@ -1,0 +1,31 @@
+https://www.youtube.com/watch?v=V6H1qAeB-l4
+
+vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    {
+        // Code here
+        priority_queue <pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq; 
+        vector<int>dist(V);
+        for(int i=0;i<V;i++)
+        {
+            dist[i]=INT_MAX;
+        }
+        dist[S]=0;
+        pq.push({dist[S],S});
+        while(!pq.empty())
+        {
+            int dist1=pq.top().first;
+            int node=pq.top().second;
+            pq.pop();
+            for(auto x:adj[node])
+            {
+                int node_x=x[0];
+                int cost_x=x[1];
+                if(dist[node_x]>dist1+cost_x)
+                {
+                    dist[node_x]=dist1+cost_x;
+                    pq.push({dist[node_x],node_x});
+                }
+            }
+        }
+        return dist;
+    }
