@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=V6H1qAeB-l4
+
 int minimumCost(vector<vector<int>>& flights, int n, int k) {
         // code here
         vector<pair<int,int>> graph[n+5];
