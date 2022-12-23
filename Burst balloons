@@ -1,0 +1,23 @@
+int maxCoins(int N, vector<int> &arr) {
+        int score=0;
+        
+        arr.push_back(1);
+        arr.insert(arr.begin(),1);
+        vector<vector<int>>dp(N+2,vector<int>(N+2,0));
+        for(int i=N;i>=1;i--)
+        {
+            for(int j=1;j<=N;j++)
+            {
+                if(i>j) continue;
+                int maxi=INT_MIN;
+                for(int ind=i;ind<=j;ind++)
+                {
+                    score=arr[i-1]*arr[ind]*arr[j+1]+dp[i][ind-1]+dp[ind+1][j];
+                    maxi=max(score,maxi);
+                }
+                dp[i][j]=maxi;
+            }
+        }
+        
+        return dp[1][N];
+    }
