@@ -1,0 +1,43 @@
+long long int wineSelling(vector<int>& Arr, int N){
+      //Code here.
+      stack<pair<int,int>>v1,v2;
+      for(int i=0;i<N;i++)
+      {
+          if(Arr[i]<0)
+          {
+              v2.push(make_pair(i,abs(Arr[i])));
+          }
+          else
+          {
+              v1.push(make_pair(i,abs(Arr[i])));
+          }
+      }
+      long long cost=0;
+      while(!v1.empty() && !v2.empty())
+      {
+          int a=v1.top().second;
+          int b=v2.top().second;
+          if(a<b)
+          {
+              b=b-a;
+              int ind1=v2.top().first;
+              cost=cost+a*(abs(v1.top().first-v2.top().first));
+              v2.pop();
+              v2.push(make_pair(ind1,b));
+              v1.pop();
+          }
+          else
+          {
+              
+              a=a-b;
+              int ind2=v1.top().first;
+              cost=cost+b*(abs(v1.top().first-v2.top().first));
+              v1.pop();
+              v1.push(make_pair(ind2,a));
+              v2.pop();
+          }
+          
+      }
+      return cost;
+      
+  }
