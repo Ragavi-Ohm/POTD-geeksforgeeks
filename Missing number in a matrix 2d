@@ -1,0 +1,78 @@
+long long int MissingNo(vector<vector<int> >& matrix) {
+        // Code here
+        long long zero=0,r,l,flag=0,k=0;
+        long long res=0;
+        //unordered_map<int,int>mp;
+        stack<long long>st;
+        
+        int n=matrix.size();
+        
+        for(int i=0;i<n;i++)
+        {
+            long long sum=0;
+            for(int j=0;j<n;j++)
+            {
+                if(matrix[i][j]==0){
+                flag=1;
+                l=i;
+                r=j;
+                }
+                sum=sum+matrix[i][j];
+            }
+            
+            if(flag!=1)
+            {
+                if(st.empty())
+                st.push(sum);
+                else
+                {
+                    if(st.top()!=sum)
+                    {
+                        return -1;
+                    }
+                }
+            }
+            
+            else
+            { 
+                flag=0;
+                zero=sum;
+            }
+           
+        }
+        long long d1=0,d2=0;
+        if(st.top()-zero<=0)
+        return -1;
+        
+        //matrix[l][r]=st.top()-zero;
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i==j)
+                {
+                    if(i==l && j==r)
+                    d1=d1+st.top()-zero;
+                    else
+                    d1=d1+matrix[i][j];
+                }
+                if(j==(n-i-1))
+                {
+                    if(i==l && j==r)
+                    d2=d2+st.top()-zero;
+                    else
+                    d2=d2+matrix[i][j];
+                }
+            }
+        }
+        //cout<<d1<<" "<<d2<<endl;
+        
+        
+        if(d1!=d2)
+        return -1;
+        else
+        res=st.top()-zero;
+        return res;
+        
+    }
