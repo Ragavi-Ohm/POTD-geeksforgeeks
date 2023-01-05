@@ -1,0 +1,33 @@
+string longestString(vector<string> &words)
+    {
+        // code here
+       
+        sort(words.begin(),words.end());
+        unordered_map<string,int>mp;
+        for(auto it:words)
+        {
+            mp[it]++;
+        }
+        string res="";
+        int size=0;
+        for(auto it:words)
+        {
+            int count=0,n;
+            string str=it;
+            n=it.size();
+            string temp="";
+            for(int j=0;j<n;j++)
+            {
+                temp=temp+str[j];
+                if(mp[temp]!=0)
+                count++;
+            }
+            
+            if(count==n && n>size){
+            res=str;
+            size=n;
+            }
+            
+        }
+        return res;
+    }
